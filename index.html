@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Movie</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 <style>
   .card>img {
@@ -17,6 +17,11 @@
   ::-webkit-scrollbar {
     width: 3px;
   }
+
+  ::-webkit-scrollbar:hover {
+    width: 10px;
+  }
+
 
   /* Track */
   ::-webkit-scrollbar-track {
@@ -33,6 +38,11 @@
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: yellowgreen;
+    
+  }
+
+  .mono {
+    color: rgb(30, 139, 143);
   }
 </style>
 
@@ -40,7 +50,48 @@
   <div class="container">
 
     <h1>movie website by muju</h1>
-    <button id="all_movies">all</button>
+
+
+
+    <button type="button" id="all_movies" class="btn btn-primary position-relative mx-2">
+      All
+      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+        <span class="visually-hidden">New alerts</span>
+      </span>
+    </button>
+
+    <button type="button" id="action" class="btn btn-primary position-relative mx-2">
+      Action
+      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+        <span class="visually-hidden">New alerts</span>
+      </span>
+    </button>
+    <button type="button" id="drama" class="btn btn-primary position-relative mx-2">
+      Drama
+      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+        <span class="visually-hidden">New alerts</span>
+      </span>
+    </button>
+    <button type="button" id="romance" class="btn btn-primary position-relative mx-2">
+      Romance
+      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+        <span class="visually-hidden">New alerts</span>
+      </span>
+    </button>
+    <button type="button" id="comedy" class="btn btn-primary position-relative mx-2">
+      Comedy
+      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+        <span class="visually-hidden">New alerts</span>
+      </span>
+    </button>
+
+
+    <!-- <button id="all_movies">all</button>
+    <button id="action">action</button>
+    <button id="drama">drama</button>
+    <button id="romance">romance</button>
+    <button id="comedy">comedy</button> -->
+
   </div>
 
 
@@ -2964,8 +3015,9 @@
 
 <script>
   var movie_display = document.getElementById("movie_display");
-  var template = document.querySelector(".template");
-  var btn = (document.getElementById("all_movies").onclick = function (ele) {
+  // var template = document.querySelector(".template");
+  // var btn = (document.getElementById("all_movies").onclick = function (ele) {
+    movie_display.innerHTML = " ";
     movies.forEach((ele) => {
       console.log(`${ele.title} </br>`);
       movie_display.innerHTML += ` 
@@ -2973,21 +3025,200 @@
           <div class="card">
               <img src="${ele.posterurl}" class="card-img-top img-fluid" alt="${ele.posterurl}" />
               <div class="card-body">
-                <h5 class="card-title">${ele.title}</h5>
-                <p class="card-title">${ele.year}</p>
+                <h5 class="card-title">🎬 ${ele.title}</h5>
+                <p class="card-title">${ele.year} | ⭐ ${ele.ratings[1]}</p>
                 <p class="card-text overflow-auto" style="height:200px">
                  ${ele.storyline}
-                <li class="card-title">${ele.genres}</li>
+                <li class="card-title mono">${ele.genres}</li>
 
                 </p>
-                <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary">Download</a>
+                <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary"><i class="ri-download-2-fill"></i> Download</a>
+              </div>
+            </div>
+        </div>
+
+         `;
+    });
+  // });
+
+
+
+
+  var btnall = (document.getElementById("all_movies").onclick = function () {
+    movie_display.innerHTML = " ";
+    movies.map((ele) => {
+      // console.log(`${ele.title} </br>`);
+      movie_display.innerHTML += ` 
+      <div class="col-lg-3 col-md-6 my-2">
+          <div class="card">
+              <img src="${ele.posterurl}" class="card-img-top img-fluid" alt="${ele.posterurl}" />
+              <div class="card-body">
+                <h5 class="card-title">🎬 ${ele.title}</h5>
+                <p class="card-title">${ele.year} | ⭐ ${ele.ratings[1]}</p>
+                <p class="card-text overflow-auto" style="height:200px">
+                 ${ele.storyline}
+                <li class="card-title mono">${ele.genres}</li>
+
+                </p>
+                <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary"><i class="ri-download-2-fill"></i> Download</a>
               </div>
             </div>
         </div>
           
          `;
     });
-  });
+
+
+
+  })
+
+
+
+
+
+  var drama = (document.getElementById("drama").onclick = function () {
+    movie_display.innerHTML = " ";
+    movies = movies.filter((ele) => ele.genres[0] == "Drama")
+    movies.map((ele) => {
+
+      movie_display.innerHTML += ` 
+      <div class="col-lg-3 col-md-6 my-2">
+          <div class="card">
+              <img src="${ele.posterurl}" class="card-img-top img-fluid" alt="${ele.posterurl}" />
+              <div class="card-body">
+                <h5 class="card-title">🎬 ${ele.title}</h5>
+                <p class="card-title">${ele.year} | ⭐ ${ele.ratings[1]}</p>
+                <p class="card-text overflow-auto" style="height:200px">
+                 ${ele.storyline}
+                <li class="card-title mono">${ele.genres}</li>
+
+                </p>
+                <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary"><i class="ri-download-2-fill"></i> Download</a>
+              </div>
+            </div>
+        </div>
+          
+         `;
+    });
+  })
+
+  var action = (document.getElementById("action").onclick = function () {
+    movie_display.innerHTML = " ";
+    movies = movies.filter((ele) => ele.genres[0] == "Action")
+    movies.map((ele) => {
+
+      movie_display.innerHTML += ` 
+      <div class="col-lg-3 col-md-6 my-2">
+          <div class="card">
+              <img src="${ele.posterurl}" class="card-img-top img-fluid" alt="${ele.posterurl}" />
+              <div class="card-body">
+                <h5 class="card-title">🎬 ${ele.title}</h5>
+                <p class="card-title">${ele.year} | ⭐ ${ele.ratings[1]}</p>
+                <p class="card-text overflow-auto" style="height:200px">
+                 ${ele.storyline}
+                <li class="card-title mono">${ele.genres}</li>
+
+                </p>
+                <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary"><i class="ri-download-2-fill"></i> Download</a>
+              </div>
+            </div>
+        </div>
+          
+         `;
+    });
+  })
+
+  var comedy = (document.getElementById("comedy").onclick = function () {
+    movie_display.innerHTML = " ";
+    movies = movies.filter((ele) => ele.genres[0] == "Comedy")
+    movies.map((ele) => {
+
+      movie_display.innerHTML += ` 
+      <div class="col-lg-3 col-md-6 my-2">
+          <div class="card">
+              <img src="${ele.posterurl}" class="card-img-top img-fluid" alt="${ele.posterurl}" />
+              <div class="card-body">
+                <h5 class="card-title">🎬 ${ele.title}</h5>
+                <p class="card-title">${ele.year} | ⭐ ${ele.ratings[1]}</p>
+                <p class="card-text overflow-auto" style="height:200px">
+                 ${ele.storyline}
+                <li class="card-title mono">${ele.genres}</li>
+
+                </p>
+                <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary"><i class="ri-download-2-fill"></i> Download</a>
+              </div>
+            </div>
+        </div>
+          
+         `;
+    });
+  })
+
+  var romance = (document.getElementById("romance").onclick = function () {
+    movie_display.innerHTML = " ";
+    movies = movies.filter((ele) => ele.genres[0] == "Romance")
+    movies.map((ele) => {
+
+      movie_display.innerHTML += ` 
+      <div class="col-lg-3 col-md-6 my-2">
+          <div class="card">
+              <img src="${ele.posterurl}" class="card-img-top img-fluid" alt="${ele.posterurl}" />
+              <div class="card-body">
+                <h5 class="card-title">🎬 ${ele.title}</h5>
+                <p class="card-title">${ele.year} | ⭐ ${ele.ratings[1]}</p>
+                <p class="card-text overflow-auto" style="height:200px">
+                 ${ele.storyline}
+                <li class="card-title mono">${ele.genres}</li>
+
+                </p>
+                <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary"><i class="ri-download-2-fill"></i> Download</a>
+              </div>
+            </div>
+        </div>
+          
+         `;
+    });
+  })
+
+
+
+
+
+
+
+  // da.map((ele) => {
+  //   // console.log(`${ele.title} </br>`);
+  //   movie_display.innerHTML += ` 
+  //     <div class="col-lg-3 col-md-6 my-2">
+  //         <div class="card">
+  //             <img src="${ele.posterurl}" class="card-img-top img-fluid" alt="${ele.posterurl}" />
+  //             <div class="card-body">
+  //               <h5 class="card-title">🎬 ${ele.title}</h5>
+  //               <p class="card-title">${ele.year} | ⭐ ${ele.ratings[1]}</p>
+  //               <p class="card-text overflow-auto" style="height:200px">
+  //                ${ele.storyline}
+  //               <li class="card-title mono">${ele.genres}</li>
+
+  //               </p>
+  //               <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary"><i class="ri-download-2-fill"></i> Download</a>
+  //             </div>
+  //           </div>
+  //       </div>
+          
+  //        `;
+  // });
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
