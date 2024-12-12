@@ -3015,10 +3015,10 @@
 
 <script>
   var movie_display = document.getElementById("movie_display");
-  // var template = document.querySelector(".template");
-  // var btn = (document.getElementById("all_movies").onclick = function (ele) {
-    movie_display.innerHTML = " ";
-    movies.forEach((ele) => {
+  console.log("started!!")
+  movie_display.innerHTML = " ";
+  movies.forEach((ele) => {
+      
       console.log(`${ele.title} </br>`);
       movie_display.innerHTML += ` 
       <div class="col-lg-3 col-md-6 my-2">
@@ -3028,16 +3028,17 @@
                 <h5 class="card-title">🎬 ${ele.title}</h5>
                 <p class="card-title">${ele.year} | ⭐ ${ele.ratings[1]}</p>
                 <p class="card-text overflow-auto" style="height:200px">
-                 ${ele.storyline}
-                <li class="card-title mono">${ele.genres}</li>
-
-                </p>
-                <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary"><i class="ri-download-2-fill"></i> Download</a>
-              </div>
-            </div>
-        </div>
-
-         `;
+                  ${ele.storyline}
+                  <li class="card-title mono">${ele.genres}</li>
+                  
+                  </p>
+                  <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary"><i class="ri-download-2-fill"></i> Download</a>
+                  </div>
+                  </div>
+                  </div>
+                  
+                  `;
+                  
     });
   // });
 
@@ -3046,7 +3047,10 @@
 
   var btnall = (document.getElementById("all_movies").onclick = function () {
     movie_display.innerHTML = " ";
+  console.log("all !!")
+
     movies.map((ele) => {
+      
       // console.log(`${ele.title} </br>`);
       movie_display.innerHTML += ` 
       <div class="col-lg-3 col-md-6 my-2">
@@ -3067,9 +3071,6 @@
           
          `;
     });
-
-
-
   })
 
 
@@ -3078,6 +3079,8 @@
 
   var drama = (document.getElementById("drama").onclick = function () {
     movie_display.innerHTML = " ";
+  console.log("drama printed !!")
+
     movies = movies.filter((ele) => ele.genres[0] == "Drama")
     movies.map((ele) => {
 
@@ -3104,6 +3107,8 @@
 
   var action = (document.getElementById("action").onclick = function () {
     movie_display.innerHTML = " ";
+  console.log("action !!")
+
     movies = movies.filter((ele) => ele.genres[0] == "Action")
     movies.map((ele) => {
 
@@ -3130,6 +3135,8 @@
 
   var comedy = (document.getElementById("comedy").onclick = function () {
     movie_display.innerHTML = " ";
+  console.log("comedy !!")
+
     movies = movies.filter((ele) => ele.genres[0] == "Comedy")
     movies.map((ele) => {
 
@@ -3156,6 +3163,8 @@
 
   var romance = (document.getElementById("romance").onclick = function () {
     movie_display.innerHTML = " ";
+  console.log("romance !!")
+
     movies = movies.filter((ele) => ele.genres[0] == "Romance")
     movies.map((ele) => {
 
