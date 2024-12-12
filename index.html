@@ -8,18 +8,47 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 </head>
+<style>
+  .card>img {
+    aspect-ratio: 2/2;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px gainsboro;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: blueviolet;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: yellowgreen;
+  }
+</style>
 
 <body>
-  <div id="movie_display">
-    <div class="container">
-      <div class="row ">
-        <div class="col-lg-3 col-md-6 col-sm-6 border template d-flex flex-column justify-content-center my-2">
+  <div class="container">
 
-        </div>
-      </div>
-    </div>
+    <h1>movie website by muju</h1>
+    <button id="all_movies">all</button>
   </div>
-  <button id="all_movies">all</button>
+
+
+
+  <div class="container">
+    <div id="movie_display" class=" row"></div>
+  </div>
+
 </body>
 <script>
   let movies = [
@@ -2934,29 +2963,33 @@
 </script>
 
 <script>
-  var a = document.getElementById("movie_display");
+  var movie_display = document.getElementById("movie_display");
   var template = document.querySelector(".template");
   var btn = (document.getElementById("all_movies").onclick = function (ele) {
-    movies.filter((ele) => {
+    movies.forEach((ele) => {
       console.log(`${ele.title} </br>`);
-      a.innerHTML += ` 
-        <div class="col-lg-3 col-md-6 col-sm-6 border template d-flex flex-column justify-content-center my-2">
-            <div class="card">
-              <img src="${ele.posterurl}" class="card-img-top img-fluid" alt="..." />
+      movie_display.innerHTML += ` 
+      <div class="col-lg-3 col-md-6 my-2">
+          <div class="card">
+              <img src="${ele.posterurl}" class="card-img-top img-fluid" alt="${ele.posterurl}" />
               <div class="card-body">
                 <h5 class="card-title">${ele.title}</h5>
-                <p class="card-text">
+                <p class="card-title">${ele.year}</p>
+                <p class="card-text overflow-auto" style="height:200px">
                  ${ele.storyline}
+                <li class="card-title">${ele.genres}</li>
+
                 </p>
-                <a href="www.google.com" class="btn btn-primary">Download</a>
+                <a href="https://giphy.com/explore/download" target="_blank" class="btn btn-primary">Download</a>
               </div>
             </div>
-          </div>`;
+        </div>
+          
+         `;
     });
   });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>
