@@ -43,12 +43,12 @@
     color: rgb(30, 139, 143);
   }
 
-  @media (min-width: 576px) {
+  /* @media (min-width: 576px) {
     .modal-dialog {
       max-width: 80%;
       !important margin: 1.75rem auto;
     }
-  }
+  } */
 </style>
 
 <body>
@@ -95,6 +95,10 @@
   </div>
 
   <div class="container">
+    <input type="text" id="search" placeholder="Search">
+  </div>
+
+  <div class="container">
     <div id="movie_display" class="row"></div>
   </div>
 
@@ -122,6 +126,10 @@
 
 <script src="movies.js"></script>
 <script>
+
+
+
+
 
   var movie_display = document.getElementById("movie_display");
 
@@ -186,7 +194,7 @@
         <hr>
         <p class="py-1"><b>Genre : </b>📢 ${ele.releaseDate}</p>
         <hr>
-        <p class="py-1"><b>Actors : </b></br>📢 ${ele.actors[0]}</p>
+        <p class="py-1"><b>Actors : </b></br>${ele.actors[0]}</p>
         <p>${ele.actors[1]}</p>
         <p>${ele.actors[2]}</p>
 
@@ -226,8 +234,19 @@
   }
 
 
-</script>
+  let search = document.getElementById("search")
+  search.addEventListener("keyup", function (e) {
+    let val = e.target.value.toUpperCase();
+    let searchData = movies.filter((ele) => !ele.title.toUpperCase().indexOf(val) || !ele.actors[0].toUpperCase().indexOf(val) || !ele.genres[0].toUpperCase().indexOf(val))
+    console.log(searchData)
+    showall(searchData)
 
+  })
+
+
+
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>
